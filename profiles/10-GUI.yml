@@ -1,0 +1,40 @@
+config:
+  environment.DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user-bus
+  environment.DISPLAY: unix:/run/X0
+  environment.NO_AT_BRIDGE: "1"
+  environment.PULSE_SERVER: unix:/run/pulse-native
+description: ""
+devices:
+  dbus:
+    bind: container
+    connect: unix:/run/user/1000/bus
+    listen: unix:/run/user-bus
+    mode: "0777"
+    type: proxy
+  eth-1:
+    type: none
+  gpu:
+    type: gpu
+  host-fonts:
+    path: /usr/share/fonts
+    source: /usr/share/fonts
+    type: disk
+  root:
+    path: /
+    pool: containers
+    type: disk
+  sound:
+    bind: container
+    connect: unix:/run/user/1000/pulse/native
+    listen: unix:/run/pulse-native
+    mode: "0777"
+    type: proxy
+  x11:
+    bind: container
+    connect: unix:/tmp/.X11-unix/X0
+    listen: unix:/run/X0
+    mode: "0777"
+    type: proxy
+name: 10-GUI
+used_by:
+project: default

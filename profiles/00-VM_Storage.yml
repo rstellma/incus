@@ -1,0 +1,10 @@
+config: {}
+description: ""
+devices:
+  root:
+    path: /
+    pool: vms
+    type: disk
+name: 00-VM_Storage
+used_by: []
+project: default

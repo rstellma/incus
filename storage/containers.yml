@@ -1,0 +1,13 @@
+config:
+  source: /home/ralf/__data/incus/storage/containers
+description: ""
+name: containers
+driver: dir
+used_by:
+- /1.0/profiles/00-Container_Storage
+- /1.0/profiles/000-Xephyr
+- /1.0/profiles/10-GUI
+- /1.0/profiles/default
+status: Created
+locations:
+- none

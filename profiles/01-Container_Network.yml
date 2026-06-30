@@ -1,0 +1,11 @@
+config: {}
+description: ""
+devices:
+  eth-1:
+    type: none
+  eth0:
+    network: incusbr100
+    type: nic
+name: 01-Container_Network
+used_by:
+project: default

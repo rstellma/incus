@@ -1,0 +1,12 @@
+config:
+  environment.INCUS_APP_NBOAT: newsboat
+  environment.INCUS_APP_W3M: w3m
+description: ""
+devices:
+  host-home:
+    path: /home/ralf
+    source: /home/ralf/__data/incus/homes/w3m
+    type: disk
+name: 20-Apps_w3m
+used_by:
+project: default

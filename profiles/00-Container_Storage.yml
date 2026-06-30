@@ -1,0 +1,10 @@
+config: {}
+description: ""
+devices:
+  root:
+    path: /
+    pool: containers
+    type: disk
+name: 00-Container_Storage
+used_by:
+project: default

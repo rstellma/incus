@@ -1,0 +1,10 @@
+config:
+  source: /home/ralf/__data/incus/storage/vms
+description: ""
+name: vms
+driver: dir
+used_by:
+- /1.0/profiles/00-VM_Storage
+status: Created
+locations:
+- none
