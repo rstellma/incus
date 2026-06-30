@@ -1,0 +1,15 @@
+config:
+  ipv4.address: 10.4.37.1/24
+  ipv4.nat: "true"
+  ipv6.address: fd42:9cd1:831d:15b8::1/64
+  ipv6.nat: "true"
+description: ""
+name: incusbr0
+type: bridge
+used_by:
+- /1.0/profiles/default
+managed: true
+status: Created
+locations:
+- none
+project: default
