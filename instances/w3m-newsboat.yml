@@ -1,0 +1,31 @@
+architecture: x86_64
+config:
+  image.architecture: amd64
+  image.description: Opensuse tumbleweed amd64 (20260630_04:20)
+  image.os: Opensuse
+  image.release: tumbleweed
+  image.serial: "20260630_04:20"
+  image.type: squashfs
+  image.variant: cloud
+  volatile.base_image: d179d403f830fd6f7fcc6ef372cbff9616dc03f73816ef00a0c0ed53f3f8f939
+  volatile.cloud-init.instance-id: 17208f52-0feb-4bc6-863d-97ba2639ba01
+  volatile.eth0.host_name: vethb8d6b735
+  volatile.eth0.hwaddr: 10:66:6a:62:dc:ca
+  volatile.eth0.name: eth0
+  volatile.idmap.base: "0"
+  volatile.idmap.current: '[{"Isuid":true,"Isgid":false,"Hostid":0,"Nsid":0,"Maprange":1},{"Isuid":true,"Isgid":false,"Hostid":1000001,"Nsid":1,"Maprange":999},{"Isuid":true,"Isgid":false,"Hostid":1000,"Nsid":1000,"Maprange":1},{"Isuid":true,"Isgid":false,"Hostid":1001001,"Nsid":1001,"Maprange":999998999},{"Isuid":false,"Isgid":true,"Hostid":0,"Nsid":0,"Maprange":1},{"Isuid":false,"Isgid":true,"Hostid":1000001,"Nsid":1,"Maprange":999},{"Isuid":false,"Isgid":true,"Hostid":1000,"Nsid":1000,"Maprange":1},{"Isuid":false,"Isgid":true,"Hostid":1001001,"Nsid":1001,"Maprange":999998999}]'
+  volatile.idmap.next: '[{"Isuid":true,"Isgid":false,"Hostid":0,"Nsid":0,"Maprange":1},{"Isuid":true,"Isgid":false,"Hostid":1000001,"Nsid":1,"Maprange":999},{"Isuid":true,"Isgid":false,"Hostid":1000,"Nsid":1000,"Maprange":1},{"Isuid":true,"Isgid":false,"Hostid":1001001,"Nsid":1001,"Maprange":999998999},{"Isuid":false,"Isgid":true,"Hostid":0,"Nsid":0,"Maprange":1},{"Isuid":false,"Isgid":true,"Hostid":1000001,"Nsid":1,"Maprange":999},{"Isuid":false,"Isgid":true,"Hostid":1000,"Nsid":1000,"Maprange":1},{"Isuid":false,"Isgid":true,"Hostid":1001001,"Nsid":1001,"Maprange":999998999}]'
+  volatile.last_state.idmap: '[]'
+  volatile.last_state.power: STOPPED
+  volatile.uuid: f7f0dcfb-c0b5-4a2d-a00e-0f526c5b1fa8
+  volatile.uuid.generation: f7f0dcfb-c0b5-4a2d-a00e-0f526c5b1fa8
+devices: {}
+ephemeral: false
+profiles:
+- 00-Container_Storage
+- 01-Container_Network
+- 01-Container_ResLimits
+- 11-Users
+- 20-Apps_w3m
+stateful: false
+description: ""
