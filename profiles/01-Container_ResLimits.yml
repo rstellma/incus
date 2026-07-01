@@ -12,5 +12,5 @@ used_by:
 - /1.0/instances/chromium
 - /1.0/instances/opera
 - /1.0/instances/yt-dlp
-- /1.0/instances/foo
+- /1.0/instances/calcurse
 project: default

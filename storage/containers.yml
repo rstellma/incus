@@ -4,9 +4,10 @@ description: ""
 name: containers
 driver: dir
 used_by:
+- /1.0/instances/calcurse
 - /1.0/instances/chromium
+- /1.0/instances/desktop
 - /1.0/instances/firefox
-- /1.0/instances/foo
 - /1.0/instances/games
 - /1.0/instances/libreoffice
 - /1.0/instances/mutt1

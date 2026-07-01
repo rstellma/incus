@@ -8,5 +8,6 @@ devices:
     source: /home/ralf/__data/incus/homes/calcurse
     type: disk
 name: 20-Apps_calcurse
-used_by: []
+used_by:
+- /1.0/instances/calcurse
 project: default

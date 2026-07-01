@@ -21,5 +21,6 @@ for s in $(incus storage ls -cn -fcsv); do
 done
 
 for i in $(incus ls -cn -fcsv); do
+	incus config show $i > ${__HERE}/instances/${i}.yml
 	incus export $i ${__HERE}/instances/${i}.tar.gz
 done

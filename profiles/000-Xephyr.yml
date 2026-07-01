@@ -1,10 +1,17 @@
 config:
   cloud-init.user-data: "#cloud-config\nusers:\n  - default\n  - name: ralf\n    primary_group:
     ralf\n    groups: wheel\n    shell: /bin/bash\nlocale: de_DE.UTF-8\nruncmd:\n
-    \ - localectl set-x11-keymap de microsoftpro nodeadkeys terminate:ctrl_alt_bksp\npackages:\n
-    \   - fluxbox \n    - fluxbox-styles-upstream\n    - xterm \n    - dbus-1-x11
-    \n    - xorg-x11-fonts\n    - xauth \n    - xinit\n    - dbus-1-daemon\n    -
-    util-linux-systemd\n"
+    \ - localectl set-x11-keymap de microsoftpro nodeadkeys terminate:ctrl_alt_bksp\n
+    \ - sed -i s'/http:/https:/g' /etc/zypp/repos.d/*repo\n  - zypper mr -e 1 2 4
+    5 6\n  - zypper ref\n  - zypper up -y\n  - zypper in -y -t pattern kde kde_plasma\n
+    \ - ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime\npackages:\n    -
+    dbus-1-daemon\n    - dbus-1-x11 \n    - fluxbox \n    - fluxbox-styles-upstream\n
+    \   - konsole\n    - konsole-part-lang\n    - myrlyn\n    - patterns-kde-kde\n
+    \   - patterns-kde-kde_imaging \n    - patterns-kde-kde_internet\n    - patterns-kde-kde_multimedia\n
+    \   - patterns-kde-kde_plasma\n    - patterns-kde-kde_utilities\n    - patterns-kde-kde_utilities_opt\n
+    \   - plasma6-session-x11\n    - util-linux-systemd\n    - vim\n    - vim-data\n
+    \   - vim-data-common\n    - xauth \n    - xinit\n    - xorg-x11-fonts\n    -
+    xterm \n"
   environment.DISPLAY: 192.168.178.250:1
   raw.idmap: |
     uid 0 0
@@ -18,6 +25,10 @@ devices:
     type: nic
   gpu:
     type: gpu
+  host-home:
+    path: /home/ralf
+    source: /home/ralf/__data/incus/homes/gui
+    type: disk
   root:
     path: /
     pool: containers
@@ -28,5 +39,6 @@ devices:
     listen: unix:/run/pulse-native
     type: proxy
 name: 000-Xephyr
-used_by: []
+used_by:
+- /1.0/instances/desktop
 project: default
