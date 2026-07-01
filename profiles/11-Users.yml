@@ -20,4 +20,13 @@ description: ""
 devices: {}
 name: 11-Users
 used_by:
+- /1.0/instances/games
+- /1.0/instances/libreoffice
+- /1.0/instances/mutt1
+- /1.0/instances/mutt2
+- /1.0/instances/w3m-newsboat
+- /1.0/instances/firefox
+- /1.0/instances/chromium
+- /1.0/instances/opera
+- /1.0/instances/yt-dlp
 project: default

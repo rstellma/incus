@@ -12,4 +12,5 @@ devices:
     type: disk
 name: 21-Apps_LibreOffice
 used_by:
+- /1.0/instances/libreoffice
 project: default

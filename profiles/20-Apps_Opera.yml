@@ -12,4 +12,5 @@ devices:
     type: disk
 name: 20-Apps_Opera
 used_by:
+- /1.0/instances/opera
 project: default

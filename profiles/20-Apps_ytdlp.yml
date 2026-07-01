@@ -8,4 +8,5 @@ devices:
     type: disk
 name: 20-Apps_ytdlp
 used_by:
+- /1.0/instances/yt-dlp
 project: default

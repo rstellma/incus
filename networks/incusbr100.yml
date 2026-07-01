@@ -7,6 +7,16 @@ description: ""
 name: incusbr100
 type: bridge
 used_by:
+- /1.0/instances/chromium
+- /1.0/instances/firefox
+- /1.0/instances/foo
+- /1.0/instances/games
+- /1.0/instances/libreoffice
+- /1.0/instances/mutt1
+- /1.0/instances/mutt2
+- /1.0/instances/opera
+- /1.0/instances/w3m-newsboat
+- /1.0/instances/yt-dlp
 - /1.0/profiles/000-Xephyr
 - /1.0/profiles/01-Container_Network
 managed: true

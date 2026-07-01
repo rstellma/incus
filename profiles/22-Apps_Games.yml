@@ -20,4 +20,5 @@ devices:
     type: disk
 name: 22-Apps_Games
 used_by:
+- /1.0/instances/games
 project: default

@@ -37,4 +37,10 @@ devices:
     type: proxy
 name: 10-GUI
 used_by:
+- /1.0/instances/games
+- /1.0/instances/libreoffice
+- /1.0/instances/firefox
+- /1.0/instances/chromium
+- /1.0/instances/opera
+- /1.0/instances/yt-dlp
 project: default

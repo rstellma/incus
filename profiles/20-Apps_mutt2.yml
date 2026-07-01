@@ -9,4 +9,5 @@ devices:
     type: disk
 name: 20-Apps_mutt2
 used_by:
+- /1.0/instances/mutt2
 project: default
