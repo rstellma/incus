@@ -1,11 +1,13 @@
 #!/usr/bin/bash
 
-set -x
+# set -x
 set -eu
 set -o pipefail
 
 declare -r DESKTOP="${1:-fluxbox}"
 declare -r CONTAINER="${2:-desktop}"
+
+[[ -z "$(which Xephyr 2>/dev/null)" ]] && { echo "Nope! No containerized desktop for you. Install 'Xephyr' first."; exit 1; }
 
 # It's a bit "hacky" but it's the only thing we can rely on; 
 # the physical interface could be named "eth0," "enp3s0," or something else.
