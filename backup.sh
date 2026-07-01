@@ -4,7 +4,8 @@
 set -eu
 set -o pipefail
 
-declare -gr __HERE=$(cd "$(dirname "$0")" && pwd)
+__HERE=$(cd "$(dirname "$0")" && pwd)
+readonly __HERE
 
 
 
