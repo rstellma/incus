@@ -16,7 +16,7 @@ opera | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Con
 chromium | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_Chromium</li></ul> | chromium
 w3m | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>11-Users</li><li>20-Apps_w3m</li></ul> | bash -c 'cd $HOME; w3m -B ./.w3m/bookmark.html<br/> -config ./.w3m/config'
 newsboat | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>11-Users</li><li>20-Apps_w3m</li></ul> | bash -c 'cd $HOME; newsboat'
-yt-dlp | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>11-Users</li><li>20-Apps_ytdlp</li></ul> | bash
+yt-dlp | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>11-Users</li><li>20-Apps_ytdlp</li></ul> | bash -c 'cd $HOME'
 
 - **Fluxbox** in Container "desktop" starten (default)
 ```bash
