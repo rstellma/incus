@@ -8,3 +8,27 @@ Incus Version	| 6.23
 Xephyr Version | 21.1.15
 Created | 2026-07-01
 Updated | 2026-07-01
+
+Container | Profile | Start (incus exec \<container\> -- sudo -u ralf -E)
+--- | --- | ---
+firefox | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_Firefox</li></ul> | firefox
+opera | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_Opera</li></ul> | opera
+chromium | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_Chromium</li></ul> | chromium
+w3m | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_w3m</li></ul> | bash -c 'cd $HOME; w3m -B ./.w3m/bookmark.html -config ./.w3m/config'
+newsboat | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_w3m</li></ul> | bash -c 'cd $HOME; newsboat'
+yt-dlp | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_ytdlp</li></ul> | bash
+
+- **Fluxbox** in Container "desktop" starten (default)
+```bash
+$> ./start-desktop.sh [fluxbox]
+```
+
+- **KDE** in Container "desktop" starten
+```bash
+$> ./start-desktop.sh kde
+```
+
+- **Fluxbox** oder **KDE** in Container "foo" starten
+```bash
+$> ./start-desktop.sh fluxbox|kde foo
+```
