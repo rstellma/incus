@@ -11,11 +11,12 @@ Updated | 2026-07-01
 
 Container | Profile | Start (incus exec \<container\> -- sudo -u ralf -E)
 --- | --- | ---
-firefox | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_Firefox</li></ul> | firefox
-opera | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_Opera</li></ul> | opera
 chromium | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_Chromium</li></ul> | chromium
-w3m | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>11-Users</li><li>20-Apps_w3m</li></ul> | bash -c 'cd $HOME; w3m -B ./.w3m/bookmark.html<br/> -config ./.w3m/config'
+firefox | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_Firefox</li></ul> | firefox
+libreoffice | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_LibreOffice</li></ul> | <ul><li>libreoffice --base</li><li>libreoffice --calc</li><li>libreoffice --draw</li><li>libreoffice --impress</li><li>libreoffice --math</li><li>libreoffice --writer</li></ul>
 newsboat | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>11-Users</li><li>20-Apps_w3m</li></ul> | bash -c 'cd $HOME; newsboat'
+opera | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_Opera</li></ul> | opera
+w3m | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>11-Users</li><li>20-Apps_w3m</li></ul> | bash -c 'cd $HOME; w3m -B ./.w3m/bookmark.html<br/> -config ./.w3m/config'
 yt-dlp | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>11-Users</li><li>20-Apps_ytdlp</li></ul> | bash -c 'cd $HOME'
 
 - **Fluxbox** in Container "desktop" starten (default)
