@@ -34,7 +34,7 @@ for socket in {1..10}; do
 done
 [[ $found_free_socket -eq 0 ]] && exit 1	# Apparently, 10 desktop sessions weren't enough.
 
-if ! incus ls status=running | grep -q "$CONTAINER"; then
+if ! incus info "$CONTAINER" | grep -q "Status: RUNNING"; then
 	incus start "$CONTAINER"
 	res=$?
 fi
