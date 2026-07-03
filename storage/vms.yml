@@ -5,6 +5,7 @@ name: vms
 driver: dir
 used_by:
 - /1.0/profiles/00-VM_Storage
+- /1.0/storage-pools/vms/volumes/custom/openSUSE-Leap-Micro.x86_64-Base-SelfInstall
 status: Created
 locations:
 - none
