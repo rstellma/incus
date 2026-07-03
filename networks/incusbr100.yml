@@ -10,6 +10,7 @@ used_by:
 - /1.0/instances/calcurse
 - /1.0/instances/chromium
 - /1.0/instances/desktop
+- /1.0/instances/editors
 - /1.0/instances/firefox
 - /1.0/instances/games
 - /1.0/instances/libreoffice
@@ -18,8 +19,9 @@ used_by:
 - /1.0/instances/opera
 - /1.0/instances/w3m-newsboat
 - /1.0/instances/yt-dlp
-- /1.0/profiles/000-Xephyr
 - /1.0/profiles/01-Container_Network
+- /1.0/profiles/10-Env_Desktop
+- /1.0/profiles/zzz-000-Xephyr
 managed: true
 status: Created
 locations:
