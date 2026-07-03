@@ -7,6 +7,7 @@ used_by:
 - /1.0/instances/calcurse
 - /1.0/instances/chromium
 - /1.0/instances/desktop
+- /1.0/instances/editors
 - /1.0/instances/firefox
 - /1.0/instances/games
 - /1.0/instances/libreoffice
@@ -16,9 +17,10 @@ used_by:
 - /1.0/instances/w3m-newsboat
 - /1.0/instances/yt-dlp
 - /1.0/profiles/00-Container_Storage
-- /1.0/profiles/000-Xephyr
-- /1.0/profiles/10-GUI
+- /1.0/profiles/10-Env_Desktop
+- /1.0/profiles/10-Env_GUI
 - /1.0/profiles/default
+- /1.0/profiles/zzz-000-Xephyr
 status: Created
 locations:
 - none
