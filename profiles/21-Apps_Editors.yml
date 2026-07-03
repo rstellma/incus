@@ -1,0 +1,21 @@
+config:
+  environment.INCUS_APP_GIT: git-core bash-completion
+  environment.INCUS_APP_KATE: kate kate-lang
+  environment.INCUS_APP_KONSOLE: konsole konsole-part-lang
+  environment.INCUS_APP_VIM: vim vim-plugin-bufexplorer vim-plugin-calendar vim-plugin-colorschemes
+    vim-plugin-diffchanges vim-plugin-markdown vim-plugin-salt
+  environment.INCUS_RMAPP_BUSYBOX: busybox-diffutils
+description: ""
+devices:
+  host-home:
+    path: /home/ralf
+    source: /home/ralf
+    type: disk
+  vim-conf:
+    path: /home/ralf/.vimrc
+    source: /home/ralf/.vimrc
+    type: disk
+name: 21-Apps_Editors
+used_by:
+- /1.0/instances/editors
+project: default

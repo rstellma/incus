@@ -1,0 +1,34 @@
+config:
+  raw.idmap: |
+    uid 0 0
+    gid 0 0
+    uid 1000 1000
+    gid 1000 1000
+  user.user-data: "#cloud-config\nusers:\n  - default\n  - name: ralf\n    shell:
+    /bin/bash\nlocale: de_DE.UTF-8\nruncmd:\n  - localectl set-x11-keymap de microsoftpro
+    nodeadkeys terminate:ctrl_alt_bksp\n  # ERWEITERUNG: Sucht nach allen Umgebungsvariablen,
+    die mit \"INCUS_APP_\" beginnen und installiert\n  # die darin genannten Pakete\n
+    \ # (definiert in Profilen \"2*-Apps_*\" -> INCUS_APP_*).\n  # Manchmal müssen
+    vorher noch Pakete entfernt werden, die im Image per default enthalten sind\n
+    \ # (definiert in Profilen \"2*-Apps_*\" -> INCUS_RMAPP_*)\n  - |\n    PKGS=$(tr
+    '\\0' '\\n' < /proc/1/environ | grep '^INCUS_RMAPP_' | cut -d= -f2- | tr '\\n'
+    ' ')\n    if [ -n \"$PKGS\" ]; then\n      zypper rm -y $PKGS \n    fi\n  - |\n
+    \   PKGS=$(tr '\\0' '\\n' < /proc/1/environ | grep '^INCUS_APP_' | cut -d= -f2-
+    | tr '\\n' ' ')\n    if [ -n \"$PKGS\" ]; then\n      zypper in -y $PKGS \n    fi\n"
+description: ""
+devices: {}
+name: 11-Users
+used_by:
+- /1.0/instances/games
+- /1.0/instances/libreoffice
+- /1.0/instances/mutt1
+- /1.0/instances/mutt2
+- /1.0/instances/w3m-newsboat
+- /1.0/instances/firefox
+- /1.0/instances/chromium
+- /1.0/instances/opera
+- /1.0/instances/yt-dlp
+- /1.0/instances/desktop
+- /1.0/instances/calcurse
+- /1.0/instances/editors
+project: default

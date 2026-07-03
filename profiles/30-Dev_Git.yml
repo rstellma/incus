@@ -1,0 +1,23 @@
+config:
+  environment.INCUS_APP_GIT: git git-core git-email
+description: ""
+devices:
+  bashrc:
+    path: /home/ralf/.bashrc
+    source: /home/ralf/.bashrc
+    type: disk
+  gitconfig:
+    path: /home/ralf/.config/git
+    source: /home/ralf/.config/git
+    type: disk
+  gitconfig_home:
+    path: /home/ralf/.gitconfig
+    source: /home/ralf/.gitconfig
+    type: disk
+  gitignore:
+    path: /home/ralf/.gitignore_global
+    source: /home/ralf/.gitignore_global
+    type: disk
+name: 30-Dev_Git
+used_by: []
+project: default

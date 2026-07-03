@@ -1,0 +1,16 @@
+config:
+  environment.DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user-bus
+  environment.DISPLAY: unix:/run/X0
+  environment.INCUS_APP_FIREFOX: MozillaFirefox
+  environment.NO_AT_BRIDGE: "1"
+  environment.PULSE_SERVER: unix:/run/pulse-native
+description: ""
+devices:
+  host-home:
+    path: /home/ralf
+    source: /home/ralf/__data/incus/homes/firefox
+    type: disk
+name: 20-Apps_Firefox
+used_by:
+- /1.0/instances/firefox
+project: default

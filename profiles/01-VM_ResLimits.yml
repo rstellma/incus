@@ -1,0 +1,8 @@
+config:
+  limits.cpu: "4"
+  limits.memory: 8GiB
+description: ""
+devices: {}
+name: 01-VM_ResLimits
+used_by: []
+project: default
