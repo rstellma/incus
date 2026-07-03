@@ -21,7 +21,7 @@ for s in $(incus storage ls -cn -fcsv); do
 	incus storage show "$s" > "${__HERE}"/storage/"${s}".yml
 done
 
-for i in $(incus ls -cn -fcsv); do
+for i in $(incus ls type=container -cn -fcsv); do
 	echo -e "[INFO] Container '\033[1;36m$i\033[1;0m'"
 	incus config show "$i" > "${__HERE}"/instances/"${i}".yml
 	incus export "$i" "${__HERE}"/instances/"${i}".tar.gz
