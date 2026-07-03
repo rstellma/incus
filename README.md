@@ -11,6 +11,7 @@ Updated | 2026-07-03
 
 Container | Profile | Start (incus exec \<container\> -- sudo -u ralf -E)
 --- | --- | ---
+calcurse | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_calcurse</li></ul> | bash -c 'cd $HOME; calcurse'
 chromium | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_Chromium</li></ul> | chromium
 firefox | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_Firefox</li></ul> | firefox
 libreoffice | <ul><li>00-Container_Storage</li><li>01-Container_Network</li><li>01-Container_ResLimits</li><li>10-GUI</li><li>11-Users</li><li>20-Apps_LibreOffice</li></ul> | <ul><li>libreoffice --base</li><li>libreoffice --calc</li><li>libreoffice --draw</li><li>libreoffice --impress</li><li>libreoffice --math</li><li>libreoffice --writer</li></ul>
