@@ -53,6 +53,8 @@ The host serves exclusively as:
 - GUI components are pure orchestration clients
 - Classification is derived exclusively from profiles (no external labeling)
 
+The system must not possess any implicit state. All information required for reproduction must be explicitly contained within the system itself or in the exported specification. Manual rework, special cases, and undocumented assumptions are considered architectural flaws.
+
 [↑ Back to Table of Contents](#table-of-contents)
 
 ---
@@ -79,7 +81,7 @@ Define the type of runtime environment:
 
 ---
 
-## 3.3 Application Profiless
+## 3.3 Application Profiles
 
 Define installed applications:
 
