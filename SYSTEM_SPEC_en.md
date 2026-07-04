@@ -1,8 +1,8 @@
 # Table of Contents
 
-- [1. Objective](#1-objectives)
+- [1. Objective](#1-objective)
 - [2. Architectural Principles](#2-architectural-principles)
-- [3. Profile Model](#3-profiles-model)
+- [3. Profiles Model](#3-profiles-model)
   - [3.1 Technical Base Profiles (Infrastructure)](#31-technical-base-profiles-infrastructure)
   - [3.2 Environment Profiles](#32-environment-profiles)
   - [3.3 Application Profiles](#33-application-profiles)
@@ -12,14 +12,14 @@
 - [6. Startup Model (Runtime)](#6-startup-model-runtime)
   - [6.1 Desktop Sessions](#61-desktop-sessions)
   - [6.2 App Launch](#62-app-launch)
-- [7. Persistence Model](#7-presistence-model)
+- [7. Persistence Model](#7-persistence-model)
 - [8. Backup Concept](#8-backup-concept)
   - [8.1 Declarative Layer](#81-declarative-layer)
   - [8.2 Instance Layer](#82-instance-layer)
 - [9. Restore Concept](#9-restore-concept)
 - [10. Non-Goals](#10-non-goals)
-- [11. Design Decision: Profiles as the Source of Truth](#11-design-decision-profiles-are-the-source-of-truth)
-- [12. Stability Goal](#12-stability-goals)
+- [11. Design Decision: Profiles as the Source of Truth](#11-design-decision-profiles-as-the-source-of-truth)
+- [12. Stability Goal](#12-stability-goal)
 - [13. Long-Term Vision](#13-long-term-vision)
 
 # 1. Objective
@@ -57,7 +57,7 @@ The host serves exclusively as:
 
 ---
 
-# 3. Profile Model
+# 3. Profiles Model
 
 ## 3.1 Technical Base Profiles (Infrastructure)
 
@@ -70,7 +70,7 @@ These profiles define the technical runtime environment of a container:
 
 These profiles **do not define an application or role**. ---
 
-## 3.2 Environment Profile
+## 3.2 Environment Profiles
 
 Define the type of runtime environment:
 
@@ -79,7 +79,7 @@ Define the type of runtime environment:
 
 ---
 
-## 3.3 Application Profiles
+## 3.3 Application Profiless
 
 Define installed applications:
 
