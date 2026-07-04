@@ -4,21 +4,21 @@
 - [1.Zielsetzung](#1-zielsetzung)
 - [2. Architekturprinzipien](#2-architekturprinzipien)
 - [3. Profilmodell](#3-profilmodell)
-  - [3.1 Technische Basisprofile (Infrastruktur)](#31-technische-basismodelle-infrastruktur)
+  - [3.1 Technische Basisprofile (Infrastruktur)](#31-technische-basisprofile-infrastruktur)
   - [3.2 Environment Profile](#32-environment-profile)
   - [3.3 Applikationsprofile](#33-applikationsprofile)
   - [3.4 Entwicklungsprofile](#34-entwicklungsprofile)
 - [4. Container-Typisierung (abgeleitet)](#4-container-typisierung-abgeleitet)
-- [5. GUI-Modell](#5-gui---modell)
+- [5. GUI-Modell](#5-gui-modell)
 - [6. Startmodell (Runtime)](#6-startmodell-runtime)
   -  [6.1 Desktop Sessions](#61-desktop-sessions)
-  -  [6.2 App-Start](#62-app---start)
--  [7. Persistenzmodell](#7-presistenzmodell)
--  [8. Backup-Konzept](#8-backup---konzept)
+  -  [6.2 App-Start](#62-app-start)
+-  [7. Persistenzmodell](#7-persistenzmodell)
+-  [8. Backup-Konzept](#8-backup-konzept)
   -  [8.1 Declarative Layer](#81-declarative-layer)
   -  [8.2 Instance Layer](#82-instance-layer)
--  [9. Restore-Konzept](#9-restore---konzept)
--  [10. Nicht-Ziele](#10-nicht---ziele)
+-  [9. Restore-Konzept](#9-restore-konzept)
+-  [10. Nicht-Ziele](#10-nicht-ziele)
 -  [11. Designentscheidung: Profile als Source of Truth](#11-designentscheidung-profile-als-source-of-truth)
 -  [12. Stabilitätsziel](#12-stabilitätsziel)
 -  [13. Langfristige Vision](#13-langfristige-vision)
@@ -142,7 +142,7 @@ Keine Persistenz außerhalb von Incus.
 
 # 6. Startmodell (Runtime)
 
-## Desktop Sessions
+## 6.1 Desktop Sessions
 
 - Xephyr wird pro Session mit freiem Display gestartet
 - jede Session nutzt eigenes:
@@ -150,7 +150,7 @@ Keine Persistenz außerhalb von Incus.
   - XAUTHORITY
 - parallele Desktop-Sessions sind erlaubt
 
-## App-Start
+## 6.2 App-Start
 
 - Apps werden via:
 ```bash
