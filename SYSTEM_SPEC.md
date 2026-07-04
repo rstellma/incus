@@ -4,7 +4,7 @@
 - [1.Zielsetzung](#1-zielsetzung)
 - [2. Architekturprinzipien](#2-architekturprinzipien)
 - [3. Profilmodell](#3-profilmodell)
-  - [3.1 Technische Basisprofile (Infrastruktur)](#31-technische-basismodelle-infrastrutkrur)
+  - [3.1 Technische Basisprofile (Infrastruktur)](#31-technische-basismodelle-infrastruktrur)
   - [3.2 Environment Profile](#32-environment-profile)
   - [3.3 Applikationsprofile](#33-applikationsprofile)
   - [3.4 Entwicklungsprofile](#34-entwicklungsprofile)
