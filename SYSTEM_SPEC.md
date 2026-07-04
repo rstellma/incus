@@ -128,8 +128,8 @@ gestartet
 
 - `/home/ralf` wird selektiv in Container gemountet
 - Konfigurationspersistenz erfolgt über:
-- `~/.config`
-- `~/.local`
+  - `~/.config`
+  - `~/.local`
 - Cache kann optional ephemeral sein
 
 ---
