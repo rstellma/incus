@@ -54,6 +54,8 @@ Der Host dient ausschließlich als:
 - GUI-Komponenten sind reine Orchestrations-Clients
 - Klassifikation erfolgt ausschließlich aus Profilen (kein externes Labeling)
 
+Das System soll keinen impliziten Zustand besitzen. Alle zur Reproduktion notwendigen Informationen müssen explizit im System selbst oder in der exportierten Spezifikation enthalten sein. Manuelle Nacharbeiten, Sonderfälle und nicht dokumentierte Annahmen gelten als Architekturfehler.
+
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
 
