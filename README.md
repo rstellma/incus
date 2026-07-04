@@ -60,6 +60,7 @@ Die Architektur verfolgt dabei mehrere Ziele:
 Das langfristige Ziel ist es, einen vollständigen Arbeitsplatz jederzeit aus einer Versionsverwaltung reproduzierbar neu erzeugen zu können.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 # Design- und Architekturentscheidungen
@@ -83,6 +84,7 @@ Beispiele:
 Dadurch entstehen kleine, wiederverwendbare Bausteine, aus denen beliebige Container zusammengesetzt werden können.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 ## Verwendung offizieller Distribution-Images
@@ -94,6 +96,7 @@ Gemeinsamkeiten zwischen verschiedenen Containern werden nicht durch eigene Basi
 Ein ursprünglich evaluierter Ansatz mittels distrobuilder wurde verworfen, da der Wartungsaufwand den praktischen Nutzen überwog.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 ## Deklarative Konfiguration
@@ -105,6 +108,7 @@ Container stellen damit lediglich eine Instanz einer zuvor definierten Konfigura
 Die eigentliche Installations- und Konfigurationslogik ist versionierbar und unabhängig vom Lebenszyklus einzelner Container.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 ## Trennung von technischen und funktionalen Aspekten
@@ -156,6 +160,7 @@ Beispiele:
 Dadurch bleiben einzelne Verantwortlichkeiten klar voneinander getrennt.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 ## Persistente Benutzerdaten
@@ -175,6 +180,7 @@ Dazu gehören beispielsweise:
 Ein Neuaufbau eines Containers führt dadurch nicht zum Verlust persönlicher Daten.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 ## Minimierung des Hosts
@@ -193,6 +199,7 @@ Der Host übernimmt lediglich:
 * Startskripte
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 # Einrichtung
@@ -210,6 +217,7 @@ Benötigt werden mindestens:
 Weitere Anforderungen ergeben sich aus den jeweiligen Profilen.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 ## Grundinstallation
@@ -228,6 +236,7 @@ Die Einrichtung erfolgt in mehreren Schritten.
 Die eigentliche Konfiguration erfolgt ausschließlich über die im Repository enthaltenen YAML-Dateien.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 # Backup
@@ -241,6 +250,7 @@ Alle Incus-Profile werden exportiert und versioniert.
 Sie stellen den eigentlichen Konfigurationsstand des Systems dar.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 ## Containerdefinitionen
@@ -257,6 +267,7 @@ Insbesondere:
 Der flüchtige Laufzeitzustand eines Containers wird bewusst nicht gesichert.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 ## Persistente Benutzerdaten
@@ -271,6 +282,7 @@ Hierzu gehören insbesondere:
 * Dokumente
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 # Restore
@@ -288,6 +300,7 @@ Die Wiederherstellung erfolgt schrittweise.
 Langfristig ist ein Werkzeug geplant, das diesen Vorgang vollständig automatisiert.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 # Technische Limitierungen
@@ -303,6 +316,7 @@ Aufgrund technischer Einschränkungen von Xephyr und Incus wird derzeit die Auth
 Ein Umstieg auf Xauthority oder alternative Verfahren wird zukünftig erneut evaluiert.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 ## Wayland
@@ -312,6 +326,7 @@ Wayland wird derzeit nicht unterstützt.
 Der Fokus liegt zunächst auf einer stabilen X11-basierten Lösung.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 ## Plattform
@@ -321,6 +336,7 @@ Der Schwerpunkt liegt aktuell auf openSUSE Tumbleweed.
 Andere Distributionen wurden bisher nicht getestet.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 ## Reproduzierbarkeit
@@ -330,6 +346,7 @@ Der deklarative Teil des Systems ist bereits weitgehend reproduzierbar.
 Die vollständige Automatisierung von Backup und Restore befindet sich noch in Planung.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 # Projektstatus
@@ -341,6 +358,7 @@ Designentscheidungen werden bewusst anhand praktischer Erfahrungen getroffen und
 Erst nach Abschluss dieser Phase wird die Struktur als stabil betrachtet.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
 
 # Lizenz
@@ -348,4 +366,5 @@ Erst nach Abschluss dieser Phase wird die Struktur als stabil betrachtet.
 Derzeit ist noch keine Lizenz festgelegt.
 
 [↑ Zurück zum Inhaltsverzeichnis](#inhaltsverzeichnis)
+
 ---
