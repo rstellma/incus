@@ -219,7 +219,7 @@ Additional requirements depend on the specific profiles used.
 
 ---
 
-## Initial Setup                                                                                                                                                                                                     08:13:20 [82/1850]
+## Initial Setup                                                                                                                                                                                              
 
 The setup process involves several steps.
 
