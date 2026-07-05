@@ -7,41 +7,42 @@ Architecture	| x86\_64
 Incus Version	| 6.23
 Xephyr Version | 21.1.15
 Created | 2026-07-01
-Updated | 2026-07-03
+Updated | 2026-07-05
 
 
 # Incus Desktop & Development Environment
 
 # Table of Contents
-* [Objective](#objective)
-* [Design and Architecture Decisions](#design-and-architecture-decisions)
-  * [Profiles as Configuration Building Blocks](#profiles-as-configuration-building-blocks)
-  * [Use of Official Distribution Images](#use-of-official-distribution-images)
-  * [Declarative Configuration](#declarative-configuration)
-  * [Separation of Technical and Functional Aspects](#separation-of-technical-and-functional-aspects)
-    * [Container](#container)
-    * [Environment](#environment)
-    * [Applications](#applications)
-    * [Development](#development)
-  * [Persistent User Data](#persistent-user-data)
-  * [Host Minimization](#host-minimization)
-* [Setup](#setup)
-  * [Prerequisites](#prerequisites)
-  * [Initial Setup](#initial-setup)
-* [Backup](#backup)
-  * [Profiles](#profiles)
-  * [Container Definitions](#container-definitions)
-  * [Persistent User Data](#persistent-user-data)
-* [Restore](#restore)
-* [Technical Limitations](#technical-limitations)
-  * [X11](#x11)
-  * [Wayland](#wayland)
-  * [Platform](#platform)
-  * [Reproducibility](#reproducibility)
-* [Project Status](#project-status)
-* [License](#license)
+* [1. Objective](#1-objective)
+* [2. Design and Architecture Decisions](#2-design-and-architecture-decisions)
+  * [2.1 Profiles as Configuration Building Blocks](#21-profiles-as-configuration-building-blocks)
+  * [2.2 Use of Official Distribution Images](#22-use-of-official-distribution-images)
+  * [2.3 Declarative Configuration](#23-declarative-configuration)
+  * [2.4 Separation of Technical and Functional Aspects](#24-separation-of-technical-and-functional-aspects)
+    * [2.4.1 Container](#241-container)
+    * [2.4.2 Environment](#242-environment)
+    * [2.4.3 Applications](#243-applications)
+    * [2.4.4 Development](#244-development)
+  * [2.5 Persistent User Data](#25-persistent-user-data)
+  * [2.6 Host Minimization](#26-host-minimization)
+* [3. Setup](#3-setup)
+  * [3.1 Prerequisites](#31-prerequisites)
+  * [3.2 Initial Setup](#32-initial-setup)
+  * [3.3 Incus Manager](#33-incus-manager)
+* [4. Backup](#4-backup)
+  * [4.1 Profiles](#41-profiles)
+  * [4.2 Container Definitions](#42-container-definitions)
+  * [4.3 Persistent User Data](#43-persistent-user-data)
+* [5. Restore](#5-restore)
+* [6. Technical Limitations](#6-technical-limitations)
+  * [6.1 X11](#61-x11)
+  * [6.2 Wayland](#62-wayland)
+  * [6.3 Platform](#63-platform)
+  * [6.4 Reproducibility](#64-reproducibility)
+* [7. Project Status](#7-project-status)
+* [8. License](#8-license)
 
-## Objective
+# 1. Objective
 
 This project aims to provide a fully containerized work environment based on Incus.
 
@@ -62,9 +63,9 @@ The long-term goal is to be able to recreate a complete workstation from version
 
 ---
 
-# Design and Architecture Decisions
+# 2. Design and Architecture Decisions
 
-## Profiles as Configuration Building Blocks
+## 2.1 Profiles as Configuration Building Blocks
 
 Instead of providing large, monolithic container images, the system is assembled from small, clearly defined Incus profiles.
 
@@ -86,7 +87,7 @@ This results in small, reusable building blocks that can be combined to create a
 
 ---
 
-## Use of Official Distribution Images
+## 2.2 Use of Official Distribution Images
 
 Only unmodified images from the respective Linux distributions are used.
 
@@ -98,7 +99,7 @@ An initial approach using `distrobuilder` was discarded because the maintenance 
 
 ---
 
-## Declarative Configuration
+## 2.3 Declarative Configuration
 
 The actual system description resides not within the containers themselves, but in the profiles being used.
 
@@ -110,11 +111,11 @@ The actual installation and configuration logic is version-controllable and inde
 
 ---
 
-## Separation of Technical and Functional Aspects
+## 2.4 Separation of Technical and Functional Aspects
 
 Profiles are categorized into different groups.
 
-### Container
+### 2.4.1 Container
 
 Provides basic Incus functionality.
 
@@ -124,7 +125,7 @@ Examples:
 * Network
 * Resource limits
 
-### Environment
+### 2.4.2 Environment
 
 Describes the runtime environment.
 
@@ -134,7 +135,7 @@ Examples:
 * Desktop
 * Users
 
-### Applications
+### 2.4.3 Applications
 
 Installs applications.
 
@@ -145,7 +146,7 @@ Examples:
 * Editors
 * Tools
 
-### Development
+### 2.4.4 Development
 
 Installs development environments.
 
@@ -162,7 +163,7 @@ This ensures that individual responsibilities remain clearly separated.
 
 ---
 
-## Persistent User Data
+## 2.5 Persistent User Data
 
 Containers remain fundamentally interchangeable.
 
@@ -182,7 +183,7 @@ Consequently, rebuilding a container does not result in the loss of personal dat
 
 ---
 
-## Host Minimization
+## 2.6 Host Minimization
 
 The host contains as little software as possible.
 
@@ -201,9 +202,9 @@ The host handles only:
 
 ---
 
-# Setup
+# 3. Setup
 
-## Prerequisites
+## 3.1 Prerequisites
 
 At a minimum, the following are required:
 
@@ -219,7 +220,7 @@ Additional requirements depend on the specific profiles used.
 
 ---
 
-## Initial Setup                                                                                                                                                                                              
+## 3.2 Initial Setup                                                                                                                                                                                              
 
 The setup process involves several steps.
 
@@ -238,11 +239,25 @@ The actual configuration is handled exclusively via the YAML files included in t
 
 ---
 
-# Backup
+## 3.3 Incus Manager
+
+Incus Manager is not a substitute for the Incus CLI or the Incus Web UI. It deliberately provides only those functions frequently required for daily operations. Administrative tasks—such as creating or configuring instances, networks, or storage pools—remain the domain of the official Incus tools.
+
+Start mit:
+```bash
+$> python3 incus-manager/gui.py
+```
+
+[↑ Back to Table of Contents](#table-of-contents)
+
+---
+
+
+# 4. Backup
 
 The project deliberately distinguishes between different levels of backups.
 
-## Profiles
+## 4.1 Profiles
 
 All Incus profiles are exported and version-controlled.
 
@@ -252,7 +267,7 @@ They represent the system's actual configuration state.
 
 ---
 
-## Container Definitions
+## 4.2 Container Definitions
 
 Relevant information is backed up for each instance.
 
@@ -269,7 +284,7 @@ The volatile runtime state of a container is deliberately not backed up.
 
 ---
 
-## Persistent User Data
+## 4.3 Persistent User Data
 
 All mounted host directories are backed up independently of Incus.
 
@@ -284,7 +299,7 @@ This includes, in particular:
 
 ---
 
-# Restore
+# 5. Restore
 
 The restoration process is carried out in stages.
 
@@ -302,11 +317,11 @@ A tool to fully automate this process is planned for the future.
 
 ---
 
-# Technical Limitations
+# 6. Technical Limitations
 
 There are currently some known limitations.
 
-## X11
+## 6.1 X11
 
 GUI integration is currently handled via Xephyr.
 
@@ -318,7 +333,7 @@ A switch to Xauthority or alternative methods will be re-evaluated in the future
 
 ---
 
-## Wayland
+## 6.2 Wayland
 
 Wayland is not currently supported.
 
@@ -328,7 +343,7 @@ The initial focus is on a stable X11-based solution.
 
 ---
 
-## Platform
+## 6.3 Platform
 
 The current focus is on openSUSE Tumbleweed.
 
@@ -338,7 +353,7 @@ Other distributions have not yet been tested.
 
 ---
 
-## Reproducibility
+## 6.4 Reproducibility
 
 The declarative part of the system is already largely reproducible.
 
@@ -348,7 +363,7 @@ Full automation of backup and restore processes is currently in the planning sta
 
 ---
 
-# Project Status
+# 7. Project Status
 
 The project is currently in the evaluation and design phase.
 
@@ -360,9 +375,9 @@ The structure will only be considered stable once this phase is complete.
 
 ---
 
-# License
+# 8. License
 
-No license has been determined yet.
+The project is licensed under the [MIT License](LICENSE).
 
 [↑ Back to Table of Contents](#table-of-contents)
 
