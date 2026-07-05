@@ -62,6 +62,7 @@ Beispiel:
   - [x] Keine eigene Klassifikation außer Profilmapping
   - [x] Refresh ist idempotent
 7. Operational Stability Test
+
 System gilt als freeze-ready, wenn:
   - [ ] Ein neuer Container kann in < 5 Minuten vollständig definiert werden
   - [ ] Ein defektes System kann vollständig aus Backup rekonstruiert werden
