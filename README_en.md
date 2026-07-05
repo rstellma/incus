@@ -243,7 +243,7 @@ The actual configuration is handled exclusively via the YAML files included in t
 
 Incus Manager is not a substitute for the Incus CLI or the Incus Web UI. It deliberately provides only those functions frequently required for daily operations. Administrative tasks—such as creating or configuring instances, networks, or storage pools—remain the domain of the official Incus tools.
 
-Start mit:
+Start with:
 ```bash
 $> python3 incus-manager/gui.py
 ```
