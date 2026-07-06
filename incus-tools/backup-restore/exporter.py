@@ -7,7 +7,7 @@ import yaml
 from typing import List, Dict, Any
 
 import incus as inc
-import classify as cls
+# import classify as cls
 import repository as repo
 
 def export_all_instances() -> None:
@@ -44,10 +44,10 @@ def export_all_pools() -> None:
     """
     Export all storage pools from Incus.
     """
-    pools = inc.list_storage()
+    pools = inc.list_pools()
 
     for pool in pools:
-        export_storage(pool["name"])
+        export_pool(pool["name"])
 
 
 def export_all_projects() -> None:
@@ -67,7 +67,7 @@ def export_instance(name: str) -> None:
     data = inc.show_instance(name)
 
     profiles = data.get("profiles", [])
-    ctype = cls.classify(profiles)
+#    ctype = cls.classify(profiles)
 
     path = repo.instance_path(name)
     config = data.get("config", {})
@@ -143,7 +143,7 @@ def export_pool(name: str) -> None:
     """
     Export a single storage pool  into spec/profiles/.
     """
-    data = inc.show_storage(name)
+    data = inc.show_pool(name)
     path = repo.storage_path(name)
 
     config = data.get("config", {})
@@ -165,7 +165,7 @@ def export_project(name: str) -> None:
     """
     Export a single project into spec/profiles/.
     """
-    data = inc.show_storage(name)
+    data = inc.show_project(name)
     path = repo.storage_path(name)
 
     config = data.get("config", {})
@@ -190,5 +190,5 @@ def export_all() -> None:
     export_all_instances()
     export_all_profiles()
     export_all_networks()
-    export_all_storage()
+    export_all_pools()
     export_all_projects()

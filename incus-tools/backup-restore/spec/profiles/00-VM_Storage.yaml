@@ -1,0 +1,8 @@
+name: 00-VM_Storage
+config: {}
+devices:
+  root:
+    path: /
+    pool: vms
+    size: 30GiB
+    type: disk

@@ -2,13 +2,13 @@
 
 ## Ziel
 
-Der **Incus Manager** ist ein Management- und Orchestrierungswerkzeug für eine deklarative, profilbasierte Incus-Umgebung.
+Der **Incus Instance Launcher** ist ein Management- und Orchestrierungswerkzeug für eine deklarative, profilbasierte Incus-Umgebung.
 
 Ziel des Projekts ist **nicht** die Verwaltung beliebiger Incus-Installationen.
 
 Ziel ist die Verwaltung **eines klar definierten Systemmodells**, dessen vollständiger Zustand jederzeit reproduzierbar ist.
 
-Der Incus Manager soll ermöglichen, dass eine Arbeitsumgebung ohne manuelle Nacharbeiten auf einem beliebigen kompatiblen System erneut aufgebaut werden kann.
+Der **Backup & Restore Manager** soll ermöglichen, dass eine Arbeitsumgebung ohne manuelle Nacharbeiten auf einem beliebigen kompatiblen System erneut aufgebaut werden kann.
 
 ---
 
@@ -20,20 +20,19 @@ Das System beschreibt **was existieren soll**, nicht **wie es Schritt für Schri
 
 Exportierte Spezifikationen beschreiben den Soll-Zustand.
 
-Der Manager sorgt dafür, dass dieser Soll-Zustand auf einem Zielsystem erreicht wird.
+Der Backup & Restore Manager sorgt dafür, dass dieser Soll-Zustand auf einem Zielsystem erreicht wird.
 
 ---
 
 ## Single Source of Truth
 
-Der Incus Manager besitzt keinen eigenen dauerhaften Zustand.
+Weder der Incus Instance Launcher noch der Incus Backup & Restore Manager besitzen einen eigenen dauerhaften Zustand.
 
 Alle Informationen befinden sich entweder
-
 * in Incus selbst oder
 * in den exportierten Spezifikationen.
 
-Der Manager erzeugt oder interpretiert ausschließlich diesen Zustand.
+Der Backup & Restore Manager erzeugt oder interpretiert ausschließlich diesen Zustand.
 
 ---
 
@@ -50,13 +49,12 @@ Nicht dokumentierte Annahmen, manuelle Nacharbeiten oder implizite Abhängigkeit
 Profile bilden die Grundlage der gesamten Systemarchitektur.
 
 Sie definieren
-
 * Infrastruktur
 * Laufzeitumgebung
 * installierte Software
 * Entwicklungsumgebungen
 
-Container besitzen keine zusätzliche semantische Beschreibung außerhalb ihrer Profilzuweisung.
+Profile sind die primäre semantische Steuerungsebene für Container.
 
 ---
 
@@ -70,14 +68,12 @@ Ein Export eines Systems muss ausreichen, um denselben funktionalen Zustand auf 
 
 ## Minimal Host
 
-Der Host stellt ausschließlich die Infrastruktur bereit.
+Der Host stellt die notwendige Infrastruktur für Container-Ausführung und Interaktion bereit.
 
 Dazu gehören insbesondere:
-
-* Incus
-* Grafikweiterleitung
-* Audioweiterleitung
-* Desktop-Orchestrierung
+* Netzwerk
+* Storage
+* optional: GUI-Integration
 
 Anwendungen werden grundsätzlich innerhalb von Containern ausgeführt.
 
@@ -92,7 +88,6 @@ Das System besteht aus zwei Ebenen.
 Diese Objekte existieren unabhängig von Containern.
 
 Beispiele:
-
 * Projekte
 * Storage Pools
 * Netzwerke
@@ -105,7 +100,6 @@ Beispiele:
 Diese Objekte repräsentieren konkrete Arbeitsumgebungen.
 
 Beispiele:
-
 * Container
 * Virtuelle Maschinen
 
@@ -144,7 +138,6 @@ Container werden ausschließlich anhand ihrer Profile klassifiziert.
 Es existieren keine zusätzlichen Typinformationen.
 
 Beispielsweise:
-
 * Desktop
 * Application
 * Development
@@ -153,13 +146,21 @@ werden vollständig aus den Profilen abgeleitet.
 
 ---
 
-# Rolle des Incus Managers
+# Rolle des Incus Instance Launchers
 
-Der Manager stellt die zentrale Verwaltungsoberfläche des Systems dar.
+Der Launcher stellt die zentrale Verwaltungsoberfläche der Instanzen dar.
 
-Er bietet sowohl grafische als auch skriptfähige Funktionen.
+Er bietet ausschließlich grafische Funktionen.
 
-Beide Oberflächen verwenden denselben gemeinsamen Programmkern.
+Die eigentliche Logik existiert ausschließlich im Core.
+
+---
+
+# Rolle des Incus Backup & Restore Managers
+
+Der Backup & Restore Manager stellt den zentralen Einstiegspunkt für geskriptete Backups und Wiederherstellungen dar .
+
+Er bietet ausschließlich skriptfähige Funktionen.
 
 Die eigentliche Logik existiert ausschließlich im Core.
 
@@ -171,36 +172,37 @@ Ein Export beschreibt den vollständigen deklarativen Soll-Zustand des Systems.
 
 Er stellt kein Backup von Nutzdaten dar.
 
-Exportiert werden ausschließlich Verwaltungsobjekte.
+Exportiert wird der reproduzierbare Systemzustand, nicht nur Verwaltungsmetadaten.
 
 ---
 
-# Deployment
+# Import
 
-Deployment bedeutet nicht "Restore".
+Import bedeutet nicht automatisch "Restore".
 
-Deployment bedeutet:
+Import bedeutet: 
+> Anwendung einer deklarativen Systembeschreibung auf ein Incus-System.
 
-> Erzeuge den beschriebenen Soll-Zustand.
+Restore bedeutet:
+> Rekonstruktion eines zuvor exportierten Systemzustands.
 
-Ein Deployment kann sowohl auf einem leeren als auch auf einem bereits bestehenden System ausgeführt werden.
+Ein Import kann sowohl auf einem leeren als auch auf einem bereits bestehenden System ausgeführt werden.
 
 ---
 
 # Architekturgrenzen
 
-Der Incus Manager ist kein allgemeines Incus-Werkzeug.
+Weder der Incus Instance Launcher noch der Incus Backup & Restore Manager sind allgemeine Incus-Werkzeuge.
 
-Er setzt die in diesem Projekt definierte Profilstruktur voraus.
+Beide setzen die in diesem Projekt definierte Profilstruktur voraus.
 
-Er versucht ausdrücklich nicht, beliebige Incus-Konfigurationen automatisch zu interpretieren.
+Beide versuchen ausdrücklich nicht, beliebige Incus-Konfigurationen automatisch zu interpretieren.
 
 ---
 
 # Entwicklungsprinzipien
 
 Neue Funktionen müssen sich an folgenden Fragen messen lassen:
-
 * Macht diese Änderung das System reproduzierbarer?
 * Reduziert sie implizites Wissen?
 * Vereinfacht sie das Deployment?
@@ -213,8 +215,4 @@ Kann eine dieser Fragen nicht eindeutig mit "Ja" beantwortet werden, sollte die 
 
 # Langfristige Vision
 
-Der Incus Manager entwickelt sich zu einer vollständigen Verwaltungsoberfläche für eine deklarative Desktop- und Entwicklungsplattform auf Basis von Incus.
-
-Nicht der Manager selbst ist das Ziel.
-
-Das Ziel ist ein System, dessen vollständiger Zustand jederzeit reproduzierbar, nachvollziehbar und versionierbar ist.
+Ziel ist ein deklaratives Arbeitsumgebungssystem auf Basis von Incus, dessen vollständiger Zustand jederzeit reproduzierbar, nachvollziehbar und versionierbar ist.

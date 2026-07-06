@@ -1,0 +1,9 @@
+name: 20-Apps_calcurse
+config:
+  environment.INCUS_APP_CALCURSE: calcurse calcurse-lang
+  environment.INCUS_APP_PYTHON: python313 python313-pip python313-httplib2 python313-setuptools
+devices:
+  host-home:
+    path: /home/ralf
+    source: /home/ralf/__data/incus/homes/calcurse
+    type: disk

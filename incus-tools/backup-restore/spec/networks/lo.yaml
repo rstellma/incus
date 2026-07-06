@@ -1,0 +1,4 @@
+name: lo
+config: {}
+type: loopback
+managed: false

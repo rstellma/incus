@@ -1,0 +1,9 @@
+name: libreoffice
+profiles:
+- 00-Container_Storage
+- 01-Container_Network
+- 01-Container_ResLimits
+- 10-Env_GUI
+- 11-Users
+- 21-Apps_LibreOffice
+image: opensuse/tumbleweed/cloud

@@ -1,0 +1,6 @@
+name: 01-VM_Network
+config: {}
+devices:
+  eth0:
+    network: incusbr200
+    type: nic

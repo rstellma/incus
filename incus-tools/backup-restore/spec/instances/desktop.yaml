@@ -1,0 +1,8 @@
+name: desktop
+profiles:
+- 00-Container_Storage
+- 01-Container_Network
+- 01-Container_ResLimits
+- 10-Env_Desktop
+- 11-Users
+image: opensuse/16.0/cloud

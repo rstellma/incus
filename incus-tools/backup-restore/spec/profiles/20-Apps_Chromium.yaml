@@ -1,0 +1,12 @@
+name: 20-Apps_Chromium
+config:
+  environment.DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user-bus
+  environment.DISPLAY: unix:/run/X0
+  environment.INCUS_APP_CHROMIUM: chromium
+  environment.NO_AT_BRIDGE: '1'
+  environment.PULSE_SERVER: unix:/run/pulse-native
+devices:
+  host-home:
+    path: /home/ralf
+    source: /home/ralf/__data/incus/homes/chromium
+    type: disk

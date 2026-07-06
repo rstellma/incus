@@ -10,7 +10,7 @@ import classify as cls
 class IncusManagerGUI:
     def __init__(self, root):
         self.root = root
-        self.root.title("Incus Manager")
+        self.root.title("Incus Instance Launcher")
 
         # MUST EXIST BEFORE UI CALLBACKS
         self.sort_reverse = {

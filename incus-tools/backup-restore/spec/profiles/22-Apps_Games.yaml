@@ -1,0 +1,20 @@
+name: 22-Apps_Games
+config:
+  environment.DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user-bus
+  environment.DISPLAY: unix:/run/X0
+  environment.INCUS_APP_DBUS: dbus-1-daemon
+  environment.INCUS_APP_EXTRAS: kf6-knewstuff kf6-knewstuff-imports knewstuff knewstuff-imports
+  environment.INCUS_APP_GNOMEGAMES: gnome-sudoku
+  environment.INCUS_APP_GNOMEGAMESLANG: gnome-sudoku-lang
+  environment.INCUS_APP_KDEGAMES: kapman kblocks kbounce kbreakout kmahjongg kmines
+    kpat kreversi ksudoku kfourinline
+  environment.INCUS_APP_KDEGAMESLANG: kapman-lang kblocks-lang kbounce-lang kbreakout-lang
+    kmahjongg-lang kmines-lang kpat-lang kreversi-lang ksudoku-lang kfourinline-lang
+  environment.INCUS_APP_STRATEGY: 0ad widelands
+  environment.NO_AT_BRIDGE: '1'
+  environment.PULSE_SERVER: unix:/run/pulse-native
+devices:
+  host-home:
+    path: /home/ralf
+    source: /home/ralf/__data/incus/homes/games
+    type: disk
