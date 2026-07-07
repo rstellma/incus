@@ -1,7 +1,0 @@
-config:
-  environment.INCUS_APP_RUST: rust cargo
-description: ""
-devices: {}
-name: 30-Dev_Rust
-used_by: []
-project: default

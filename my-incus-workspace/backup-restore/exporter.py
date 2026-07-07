@@ -5,6 +5,7 @@ Exports Incus state into declarative YAML spec.
 """
 import yaml
 from typing import List, Dict, Any
+import re
 
 import incus as inc
 # import classify as cls
@@ -37,7 +38,8 @@ def export_all_networks() -> None:
     nets = inc.list_networks()
 
     for net in nets:
-        export_network(net["name"])
+        if net["name"].startswith("incus"):
+            export_network(net["name"])
 
 
 def export_all_pools() -> None:
@@ -57,6 +59,9 @@ def export_all_projects() -> None:
     projects = inc.list_projects()
 
     for p in projects:
+        if p["name"] == "default":
+          continue
+
         export_project(p["name"])
 
 
@@ -166,7 +171,7 @@ def export_project(name: str) -> None:
     Export a single project into spec/profiles/.
     """
     data = inc.show_project(name)
-    path = repo.storage_path(name)
+    path = repo.project_path(name)
 
     config = data.get("config", {})
 

@@ -8,6 +8,13 @@ from typing import Optional
 
 SPEC_ROOT = Path("spec")
 
+def ensure_structure() -> None:
+    (SPEC_ROOT / "profiles").mkdir(parents=True, exist_ok=True)
+    (SPEC_ROOT / "instances").mkdir(parents=True, exist_ok=True)
+    (SPEC_ROOT / "networks").mkdir(parents=True, exist_ok=True)
+    (SPEC_ROOT / "storage").mkdir(parents=True, exist_ok=True)
+    (SPEC_ROOT / "projects").mkdir(parents=True, exist_ok=True)
+
 ###
 ###     Instances
 ###
@@ -77,7 +84,7 @@ def network_path(name: str) -> Path:
 
 
 def network_specs() -> list[Path]:
-    network = instance_dir()
+    network = network_dir()
 
     files = sorted(network.glob("*.yaml"))
 
@@ -96,6 +103,7 @@ def storage_dir() -> Path:
         raise FileNotFoundError(f"Directory not found: {path}")
 
     return path
+
 
 def storage_path(name: str) -> Path:
     return storage_dir() / f"{name}.yaml"
@@ -136,11 +144,3 @@ def project_specs() -> list[Path]:
         raise FileNotFoundError("No project specifications found.")
 
     return files
-
-
-#def ensure_structure() -> None:
-#    (SPEC_ROOT / "profiles").mkdir(parents=True, exist_ok=True)
-#    (SPEC_ROOT / "instances").mkdir(parents=True, exist_ok=True)
-#    (SPEC_ROOT / "networks").mkdir(parents=True, exist_ok=True)
-#    (SPEC_ROOT / "storage").mkdir(parents=True, exist_ok=True)
-#    (SPEC_ROOT / "projects").mkdir(parents=True, exist_ok=True)

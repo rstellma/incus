@@ -6,28 +6,27 @@ Only this module is allowed to call the incus CLI.
 """
 import subprocess
 import json
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, TextIO
 import yaml
 
+INSTANCE = "instance"
+NETWORK = "network"
+POOL = "pool"
+PROFILE = "profile"
+PROJECT = "project"
+STORAGE = "storage"
 
 def object_exists(obj_type: str, name: str) -> bool:
     """
     Check whether an Incus object exists.
-
-    Supported object types:
-        instance
-        profile
-        network
-        pool
-        project
     """
-
     commands = {
         "instance": ["incus", "list", "--format=yaml"],
-        "profile":  ["incus", "profile", "list", "--format=yaml"],
         "network":  ["incus", "network", "list", "--format=yaml"],
         "pool":     ["incus", "storage", "list", "--format=yaml"],
+        "profile":  ["incus", "profile", "list", "--format=yaml"],
         "project":  ["incus", "project", "list", "--format=yaml"],
+        "storage":  ["incus", "storage", "list", "--format=yaml"],
     }
 
     if obj_type not in commands:

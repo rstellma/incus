@@ -1,0 +1,6 @@
+name: test-vm
+profiles:
+- 00-VM_Storage
+- 01-VM_Network
+- 01-VM_ResLimits
+image: //

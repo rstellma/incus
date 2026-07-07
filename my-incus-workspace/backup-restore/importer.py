@@ -8,11 +8,7 @@ import repository as repo
 #SPEC_DIR = Path("spec")
 #INSTANCE_DIR = SPEC_DIR / "instances"
 
-#INSTANCE = "instance"
-#PROFILE = "profile"
-#NETWORK = "network"
-#POOL = "pool"
-#PROJECT = "project"
+
 
 
 # ---------------------------
@@ -20,6 +16,7 @@ import repository as repo
 # ---------------------------
 
 def _read_yaml(path: Path) -> dict:
+    print("_read_yaml")
     if not path.exists():
         raise FileNotFoundError(f"YAML not found: {path}")
 
@@ -28,11 +25,12 @@ def _read_yaml(path: Path) -> dict:
 
 
 def _instance_exists(name: str) -> bool:
+    print("_instance_exists")
     """
     Check if instance already exists in Incus.
     Uses YAML output only.
     """
-    result = incus.run(["incus", "list", "--format=yaml"])
+    result = inc.run(["incus", "list", "--format=yaml"])
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)
@@ -43,11 +41,12 @@ def _instance_exists(name: str) -> bool:
 
 
 def _profile_exists(name: str) -> bool:
+    print("_profile_exists")
     """
     Check if profile already exists in Incus.
     Uses YAML output only.
     """
-    result = incus.run(["incus", "profile", "list", "--format=yaml"])
+    result = inc.run(["incus", "profile", "list", "--format=yaml"])
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)
@@ -58,11 +57,12 @@ def _profile_exists(name: str) -> bool:
 
 
 def _network_exists(name: str) -> bool:
+    print("_network_exists")
     """
     Check if network already exists in Incus.
     Uses YAML output only.
     """
-    result = incus.run(["incus", "network", "list", "--format=yaml"])
+    result = inc.run(["incus", "network", "list", "--format=yaml"])
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)
@@ -73,11 +73,12 @@ def _network_exists(name: str) -> bool:
 
 
 def _storage_exists(name: str) -> bool:
+    print("_storage_exists")
     """
     Check if storage pool already exists in Incus.
     Uses YAML output only.
     """
-    result = incus.run(["incus", "storage", "list", "--format=yaml"])
+    result = inc.run(["incus", "storage", "list", "--format=yaml"])
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)
@@ -88,11 +89,12 @@ def _storage_exists(name: str) -> bool:
 
 
 def _project_exists(name: str) -> bool:
+    print("_project_exists")
     """
     Check if project already exists in Incus.
     Uses YAML output only.
     """
-    result = incus.run(["incus", "project", "list", "--format=yaml"])
+    result = inc.run(["incus", "project", "list", "--format=yaml"])
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)
@@ -103,6 +105,7 @@ def _project_exists(name: str) -> bool:
 
 
 def _build_image(image_cfg: dict) -> str:
+    print("_build_image")
     """
     Reconstruct image string from YAML config.
     """
@@ -119,11 +122,22 @@ def _build_image(image_cfg: dict) -> str:
 # ---------------------------
 # Public API
 # ---------------------------
+def import_all() -> None:
+    """
+    Import full system state.
+    """
+    import_all_projects()
+    import_all_storage()
+    import_all_networks()
+    import_all_profiles()
+    import_all_instances()
+
 
 ###
 ### Instances
 ###
 def import_instance(name: str) -> None:
+    print("import_instance")
     """
     Import a single instance from YAML spec.
     """
@@ -131,33 +145,19 @@ def import_instance(name: str) -> None:
 
     data = _read_yaml(path)
 
-    yaml_name = data.get("name")
-    if not yaml_name:
-        raise ValueError(f"Missing 'name' in {path}")
+    if data["name"] != name:
+        raise ValueError(f"Instance has wrong name: {name}, expected: {data["name"]}")
 
-    if yaml_name != name:
-        raise ValueError(f"Name mismatch: file={yaml_name}, expected={name}")
-
-    if _instance_exists(name):
+    if inc.object_exists(inc.INSTANCE, name):
         raise RuntimeError(f"Instance already exists: {name}")
 
-    config = data.get("config", {})
+    image = data["image"]
 
-    #image = _build_image(config)
-    image = data.get("name", {})
-
-    cmd = [
-        "incus",
-        "create",
-        f"images:{image}",
-        name,
-    ]
-
-    # YAML is piped into incus create
-    result = incus.run_with_input(
-        cmd,
-        yaml.safe_dump(data, sort_keys=False),
-    )
+    with open(path, encoding="utf-8") as f:
+        result = inc.run(
+            ["incus", "create", f"images:{image}", name],
+            stdin=f,
+        )
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)
@@ -173,25 +173,27 @@ def import_all_instances() -> None:
 ### Profiles
 ###
 def import_profile(name: str) -> None:
+    print("import_profile")
     path = repo.profile_path(name)
 
     data = _read_yaml(path)
 
-    if data.get("name") != name:
-        raise ValueError(...)
+    if data["name"] != name:
+        raise ValueError(f"Profile has wrong name: {name}, expected: {data["name"]}")
 
-    if _profile_exists(name):
+    if inc.object_exists(inc.PROFILE, name):
         raise RuntimeError(f"Profile already exists: {name}")
 
-    incus.run(["incus", "profile", "create", name])
-
-    result = incus.run_with_input(
-        ["incus", "profile", "edit", name],
-        yaml.safe_dump(data, sort_keys=False),
-    )
+    with open(path, encoding="utf-8") as f:
+        result = inc.run(
+            ["incus", "profile", "create", name],
+            stdin=f,
+        )
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)
+
+    print(f"[OK] imported profile: {name}")
 
 
 def import_all_profiles() -> None:
@@ -202,25 +204,27 @@ def import_all_profiles() -> None:
 ###     Networks
 ###
 def import_network(name: str) -> None:
+    print("import_network")
     path = repo.network_path(name)
 
     data = _read_yaml(path)
 
-    if data.get("name") != name:
-        raise ValueError(...)
+    if data["name"] != name:
+        raise ValueError(f"Network has wrong name: {name}, expected: {data["name"]}")
 
-    if _network_exists(name):
-        raise RuntimeError(f"Network already exists: {name}")
+    if inc.object_exists(inc.NETWORK, name):
+        raise RuntimeError(f"Profile already exists: {name}")
 
-    incus.run(["incus", "network", "create", name])
-
-    result = incus.run_with_input(
-        ["incus", "network", "edit", name],
-        yaml.safe_dump(data, sort_keys=False),
-    )
+    with open(path, encoding="utf-8") as f:
+        result = inc.run(
+            ["incus", "network", "create", name],
+            stdin=f,
+        )
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)
+
+    print(f"[OK] imported network: {name}")
 
 
 def import_all_networks() -> None:
@@ -231,25 +235,34 @@ def import_all_networks() -> None:
 ###     Storage Pools
 ###
 def import_storage(name: str) -> None:
+    print("import_storage")
     path = repo.storage_path(name)
+    print(path)
 
     data = _read_yaml(path)
 
-    if data.get("name") != name:
-        raise ValueError(...)
+    driver = data.get("driver")
+    source = data.get("config")
+    print(source["source"])
 
-    if _storage_exists(name):
+    Path(source["source"]).mkdir(parents=True, exist_ok=True)
+
+    if data.get("name") != name:
+        raise ValueError(f"Storage Pool has wrong name: {name}, expected: {data["name"]}")
+
+    if inc.object_exists(inc.STORAGE, name):
         raise RuntimeError(f"Storage Pool already exists: {name}")
 
-    incus.run(["incus", "storage", "create", name])
-
-    result = incus.run_with_input(
-        ["incus", "storage", "edit", name],
-        yaml.safe_dump(data, sort_keys=False),
-    )
+    with open(path, encoding="utf-8") as f:
+        result = inc.run(
+            ["incus", "storage", "create", name, driver],
+            stdin=f,
+        )
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)
+
+    print(f"[OK] imported storage pool: {name}")
 
 
 def import_all_storage() -> None:
@@ -260,39 +273,29 @@ def import_all_storage() -> None:
 ###     Projects
 ###
 def import_project(name: str) -> None:
+    print("import_project")
     path = repo.project_path(name)
 
     data = _read_yaml(path)
 
     if data.get("name") != name:
-        raise ValueError(...)
+        raise ValueError(f"Project has wrong name: {name}, expected: {data["name"]}")
 
-    if _project_exists(name):
+    if inc.object_exists(inc.PROJECT, name):
         raise RuntimeError(f"Project already exists: {name}")
 
-    incus.run(["incus", "project", "create", name])
-
-    result = incus.run_with_input(
-        ["incus", "project", "edit", name],
-        yaml.safe_dump(data, sort_keys=False),
-    )
+    with open(path, encoding="utf-8") as f:
+        result = inc.run(
+            ["incus", "storage", "create", name],
+            stdin=f,
+        )
 
     if result.returncode != 0:
         raise RuntimeError(result.stderr)
 
+    print(f"[OK] imported project: {name}")
+
 
 def import_all_projects() -> None:
-   for file in repo.projects_specs():
-    import_network(file.stem)
-
-
-def import_all() -> None:
-    """
-    Import full system state.
-    """
-
-    import_all_instances()
-    import_all_profiles()
-    import_all_networks()
-    import_all_pools()
-    import_all_projects()
+   for file in repo.project_specs():
+    import_project(file.stem)

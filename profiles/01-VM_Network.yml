@@ -1,9 +1,0 @@
-config: {}
-description: ""
-devices:
-  eth0:
-    network: incusbr200
-    type: nic
-name: 01-VM_Network
-used_by: []
-project: default
