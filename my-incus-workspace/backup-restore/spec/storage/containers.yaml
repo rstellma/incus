@@ -1,0 +1,4 @@
+name: containers
+config:
+  source: /home/ralf/__data/incus/storage/containers
+driver: dir

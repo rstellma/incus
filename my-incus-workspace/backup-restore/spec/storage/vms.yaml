@@ -1,0 +1,4 @@
+name: vms
+config:
+  source: /home/ralf/__data/incus/storage/vms
+driver: dir

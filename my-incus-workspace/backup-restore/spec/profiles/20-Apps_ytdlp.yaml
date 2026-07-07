@@ -1,0 +1,8 @@
+name: 20-Apps_ytdlp
+config:
+  environment.INCUS_APP_CHROMIUM: yt-dlp
+devices:
+  host-home:
+    path: /home/ralf
+    source: /home/ralf/__data/incus/homes/yt-dlp
+    type: disk

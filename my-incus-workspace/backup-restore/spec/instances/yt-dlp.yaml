@@ -1,0 +1,8 @@
+name: yt-dlp
+profiles:
+- 00-Container_Storage
+- 01-Container_Network
+- 01-Container_ResLimits
+- 11-Users
+- 20-Apps_ytdlp
+image: opensuse/tumbleweed/cloud

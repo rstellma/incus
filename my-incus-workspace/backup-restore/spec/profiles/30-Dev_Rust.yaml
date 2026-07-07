@@ -1,0 +1,4 @@
+name: 30-Dev_Rust
+config:
+  environment.INCUS_APP_RUST: rust cargo
+devices: {}

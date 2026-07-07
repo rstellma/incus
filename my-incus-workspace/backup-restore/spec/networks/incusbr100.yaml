@@ -1,0 +1,8 @@
+name: incusbr100
+config:
+  ipv4.address: 10.100.0.1/16
+  ipv4.nat: 'true'
+  ipv6.address: fd42:3e84:2ece:f7e8::1/64
+  ipv6.nat: 'true'
+type: bridge
+managed: true

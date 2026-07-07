@@ -1,0 +1,7 @@
+name: 00-Container_Storage
+config: {}
+devices:
+  root:
+    path: /
+    pool: containers
+    type: disk

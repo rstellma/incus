@@ -1,0 +1,5 @@
+name: 01-VM_ResLimits
+config:
+  limits.cpu: '4'
+  limits.memory: 8GiB
+devices: {}

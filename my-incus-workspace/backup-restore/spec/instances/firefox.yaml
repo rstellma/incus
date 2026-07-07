@@ -1,0 +1,9 @@
+name: firefox
+profiles:
+- 00-Container_Storage
+- 01-Container_Network
+- 01-Container_ResLimits
+- 10-Env_GUI
+- 11-Users
+- 20-Apps_Firefox
+image: opensuse/tumbleweed/cloud
