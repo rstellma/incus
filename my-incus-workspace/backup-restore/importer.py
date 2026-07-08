@@ -14,9 +14,7 @@ import repository as repo
 # ---------------------------
 # Helpers
 # ---------------------------
-
 def _read_yaml(path: Path) -> dict:
-    print("_read_yaml")
     if not path.exists():
         raise FileNotFoundError(f"YAML not found: {path}")
 
@@ -25,7 +23,6 @@ def _read_yaml(path: Path) -> dict:
 
 
 def _instance_exists(name: str) -> bool:
-    print("_instance_exists")
     """
     Check if instance already exists in Incus.
     Uses YAML output only.
@@ -41,7 +38,6 @@ def _instance_exists(name: str) -> bool:
 
 
 def _profile_exists(name: str) -> bool:
-    print("_profile_exists")
     """
     Check if profile already exists in Incus.
     Uses YAML output only.
@@ -57,7 +53,6 @@ def _profile_exists(name: str) -> bool:
 
 
 def _network_exists(name: str) -> bool:
-    print("_network_exists")
     """
     Check if network already exists in Incus.
     Uses YAML output only.
@@ -73,7 +68,6 @@ def _network_exists(name: str) -> bool:
 
 
 def _storage_exists(name: str) -> bool:
-    print("_storage_exists")
     """
     Check if storage pool already exists in Incus.
     Uses YAML output only.
@@ -89,7 +83,6 @@ def _storage_exists(name: str) -> bool:
 
 
 def _project_exists(name: str) -> bool:
-    print("_project_exists")
     """
     Check if project already exists in Incus.
     Uses YAML output only.
@@ -105,7 +98,6 @@ def _project_exists(name: str) -> bool:
 
 
 def _build_image(image_cfg: dict) -> str:
-    print("_build_image")
     """
     Reconstruct image string from YAML config.
     """
@@ -137,7 +129,6 @@ def import_all() -> None:
 ### Instances
 ###
 def import_instance(name: str) -> None:
-    print("import_instance")
     """
     Import a single instance from YAML spec.
     """
@@ -173,7 +164,6 @@ def import_all_instances() -> None:
 ### Profiles
 ###
 def import_profile(name: str) -> None:
-    print("import_profile")
     path = repo.profile_path(name)
 
     data = _read_yaml(path)
@@ -197,14 +187,16 @@ def import_profile(name: str) -> None:
 
 
 def import_all_profiles() -> None:
-   for file in repo.profile_specs():
-    import_profile(file.stem)
+    for file in repo.profile_specs():
+        if repo["name"] == "default":
+            continue
+
+        import_profile(file.stem)
 
 ###
 ###     Networks
 ###
 def import_network(name: str) -> None:
-    print("import_network")
     path = repo.network_path(name)
 
     data = _read_yaml(path)
@@ -235,15 +227,12 @@ def import_all_networks() -> None:
 ###     Storage Pools
 ###
 def import_storage(name: str) -> None:
-    print("import_storage")
     path = repo.storage_path(name)
-    print(path)
 
     data = _read_yaml(path)
 
     driver = data.get("driver")
     source = data.get("config")
-    print(source["source"])
 
     Path(source["source"]).mkdir(parents=True, exist_ok=True)
 
@@ -273,7 +262,6 @@ def import_all_storage() -> None:
 ###     Projects
 ###
 def import_project(name: str) -> None:
-    print("import_project")
     path = repo.project_path(name)
 
     data = _read_yaml(path)
@@ -297,5 +285,8 @@ def import_project(name: str) -> None:
 
 
 def import_all_projects() -> None:
-   for file in repo.project_specs():
-    import_project(file.stem)
+    for file in repo.project_specs():
+        if repo["name"] == "default":
+            continue
+
+        import_project(file.stem)
