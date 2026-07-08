@@ -1,0 +1,35 @@
+config:
+  core.https_address: '[::]:8443'
+networks:
+- config:
+    ipv4.address: auto
+    ipv6.address: auto
+  description: ""
+  name: incusbr0
+  type: ""
+  project: default
+storage_pools:
+- config: {}
+  description: ""
+  name: default
+  driver: dir
+storage_volumes: []
+profiles:
+- config:
+    security.privileged: "true"
+  description: ""
+  devices:
+    eth0:
+      name: eth0
+      network: incusbr0
+      type: nic
+    root:
+      path: /
+      pool: default
+      type: disk
+  name: default
+  project: default
+projects: []
+certificates: []
+cluster_groups: []
+cluster: null
